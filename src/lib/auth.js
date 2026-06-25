@@ -4,7 +4,7 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { APIError, createAuthMiddleware } from "better-auth/api";
 
 const client = new MongoClient(process.env.MONGODB_URI);
-const db = client.db("Medicare_connect");
+const db = client.db("medicare_connect");
 
 function toObjectId(id) {
   try {
