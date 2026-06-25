@@ -68,12 +68,3 @@ export async function proxy(request) {
 
   return NextResponse.next();
 }
-
-// ─── REMOVE THIS ENTIRE CONFIG ──────────────────────────────────────
-// export const config = {
-//   runtime: "nodejs",
-//   matcher: [
-//     "/dashboard/:path*",
-//     "/appointments/:path*",
-//   ],
-// };

@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { APIError, createAuthMiddleware } from "better-auth/api";
 
-const client = new MongoClient(process.env.DATABASE_URL);
+const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db("Medicare_connect");
 
 function toObjectId(id) {
@@ -47,7 +47,12 @@ export const auth = betterAuth({
   },
   user: {
     additionalFields: {
-      role: { type: "string", default: "patient", required: false, input: true },
+      role: {
+        type: "string",
+        default: "patient",
+        required: false,
+        input: true,
+      },
       status: { type: "string", default: "active", required: false },
     },
   },
@@ -58,7 +63,11 @@ export const auth = betterAuth({
       if (!user) return null;
       return {
         ...session,
-        user: { ...session.user, role: user.role || "patient", status: user.status || "active" },
+        user: {
+          ...session.user,
+          role: user.role || "patient",
+          status: user.status || "active",
+        },
       };
     },
   },
@@ -72,10 +81,12 @@ export const auth = betterAuth({
       after: async (user) => {
         try {
           const oid = toObjectId(user.id);
-          await db.collection("user").updateOne(
-            { $or: [{ _id: user.id }, ...(oid ? [{ _id: oid }] : [])] },
-            { $set: { role: user.role || "patient", status: "active" } }
-          );
+          await db
+            .collection("user")
+            .updateOne(
+              { $or: [{ _id: user.id }, ...(oid ? [{ _id: oid }] : [])] },
+              { $set: { role: user.role || "patient", status: "active" } },
+            );
         } catch (err) {
           console.error("Error saving user:", err);
         }
@@ -92,11 +103,16 @@ export const auth = betterAuth({
       await ctx.context.internalAdapter.deleteSession(newSession.session.token);
       const isOAuthCallback = ctx.path?.startsWith("/callback");
       if (isOAuthCallback) {
-        const redirectURL = new URL("/Authentication_pages", ctx.context.baseURL);
+        const redirectURL = new URL(
+          "/Authentication_pages",
+          ctx.context.baseURL,
+        );
         redirectURL.searchParams.set("error", "banned");
         throw ctx.redirect(redirectURL.toString());
       }
-      throw new APIError("FORBIDDEN", { message: "Your account has been permanently banned." });
+      throw new APIError("FORBIDDEN", {
+        message: "Your account has been permanently banned.",
+      });
     }),
   },
 });
