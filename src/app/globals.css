@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --primary-brand: #00A3E0;
+  --primary-hover: #0082b3;
+  --bg-matte: #f4f9fc;
+}
+
+body {
+  background-color: var(--bg-matte);
+  color: #1e293b;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ensure equal card dimensions across your features rows */
+.equal-grid-card {
+  @apply bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between transition-all duration-300;
+}
