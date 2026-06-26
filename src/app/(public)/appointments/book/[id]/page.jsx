@@ -53,6 +53,18 @@ export default function BookingPage({ params }) {
     problem: "",
   });
 
+  // ===========================================================================
+  // FIX: backend sends `consultationFeeUSD` / `consultationFeeBDT`, not
+  // `consultationFee`. Compute safe fallbacks here once, then use these
+  // everywhere below instead of `doctor.consultationFee`.
+  // ===========================================================================
+  const feeUSD = Number(
+    doctor?.consultationFeeUSD ?? doctor?.consultationFee ?? 0,
+  );
+  const feeBDT = Number(
+    doctor?.consultationFeeBDT ?? (feeUSD ? feeUSD * 120 : 0),
+  );
+
   // Poll for doctor acceptance
   useEffect(() => {
     if (!appointmentRequested || !pendingAppointmentId) return;
@@ -321,7 +333,7 @@ export default function BookingPage({ params }) {
           date: form.date,
           timeSlot: form.timeSlot,
           problem: form.problem,
-          consultationFee: doctor.consultationFee,
+          consultationFee: feeUSD, // FIX: use computed safe value
         }),
       });
 
@@ -548,11 +560,9 @@ export default function BookingPage({ params }) {
                   Consultation Fee
                 </span>
                 <div className="text-3xl font-black text-slate-900 mt-2">
-                  ৳{(doctor.consultationFee * 120).toFixed(0)}
+                  ৳{feeBDT.toFixed(0)}
                 </div>
-                <div className="text-xs text-slate-400">
-                  (${doctor.consultationFee} USD)
-                </div>
+                <div className="text-xs text-slate-400">(${feeUSD} USD)</div>
               </div>
             </div>
           </motion.div>
@@ -717,10 +727,10 @@ export default function BookingPage({ params }) {
                     </span>
                     <div className="text-right">
                       <div className="font-black text-blue-600">
-                        ৳{(doctor.consultationFee * 120).toFixed(0)}
+                        ৳{feeBDT.toFixed(0)}
                       </div>
                       <div className="text-xs text-slate-400">
-                        (${doctor.consultationFee} USD)
+                        (${feeUSD} USD)
                       </div>
                     </div>
                   </div>
@@ -834,7 +844,7 @@ export default function BookingPage({ params }) {
               ) : doctorAccepted ? (
                 <>
                   <FaCreditCard className="text-sm" /> Proceed to Payment — ৳
-                  {(doctor.consultationFee * 120).toFixed(0)}
+                  {feeBDT.toFixed(0)}
                 </>
               ) : (
                 <>

@@ -4,17 +4,17 @@ A modern healthcare appointment and hospital management platform that connects p
 
 ## 🌐 Live Website
 
-https://medicare-connect-three.vercel.app
+
 
 ## 🔗 Repositories
 
 ### Client Repository
 
-https://github.com/joygoswaminiloy2023-droid/MediCare_Connect
+
 
 ### Server Repository
 
-https://github.com/joygoswaminiloy2023-droid/MediCare_Connect_server
+
 
 ---
 
@@ -66,9 +66,9 @@ MediCare Connect solves these challenges by providing:
 
 ## 🔐 Admin Credentials
 
-Email: [admin12345@gmail.com](mailto:admin12345@gmail.com)
+Email: 
 
-Password: Admin12345@
+Password: 
 
 ---
 
