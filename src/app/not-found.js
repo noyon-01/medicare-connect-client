@@ -1,15 +1,13 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-white text-center px-4">
-      
       {/* MEDICAL CROSS VISUAL MARK */}
       <div className="mb-8">
         <div className="relative w-32 h-32 mx-auto flex items-center justify-center">
-          
           {/* Centered Medical Cross */}
           <div className="relative w-28 h-28 flex items-center justify-center">
             <div className="w-8 h-24 bg-[#00A3E0] rounded-md absolute"></div>
@@ -46,7 +44,6 @@ export default function NotFound() {
           <div className="absolute h-full w-1/3 bg-[#00A3E0] rounded-full animate-pulse"></div>
         </div>
       </div>
-
     </div>
   );
 }

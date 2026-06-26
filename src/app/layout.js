@@ -26,8 +26,8 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         {children}
-        <ToastContainer 
-         position="top-right"
+        <ToastContainer
+          position="top-right"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={true}

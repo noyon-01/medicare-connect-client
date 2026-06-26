@@ -1,12 +1,10 @@
-'use client'
+"use client";
 
 export default function Loading() {
   return (
     <div style={styles.container}>
       <div style={styles.monitor}>
-     
         <svg width="200" height="100" viewBox="0 0 200 100" style={styles.svg}>
-         
           <path
             d="M0 50 L40 50 L50 20 L70 80 L80 50 L120 50 L130 10 L150 90 L160 50 L200 50"
             fill="none"
@@ -14,8 +12,7 @@ export default function Loading() {
             strokeWidth="2"
             style={{ opacity: 0.2 }}
           />
-          
-       
+
           <path
             d="M0 50 L40 50 L50 20 L70 80 L80 50 L120 50 L130 10 L150 90 L160 50 L200 50"
             fill="none"
@@ -26,8 +23,7 @@ export default function Loading() {
             className="pulse-line"
           />
         </svg>
-        
-       
+
         <div className="scan-dot"></div>
       </div>
 
@@ -67,40 +63,40 @@ export default function Loading() {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '90vh',
-    backgroundColor: '#ffffff',
-    fontFamily: 'sans-serif',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "90vh",
+    backgroundColor: "#ffffff",
+    fontFamily: "sans-serif",
   },
   monitor: {
-    position: 'relative',
-    width: '200px',
-    height: '100px',
-    borderBottom: '1px solid #f1f5f9',
-    marginBottom: '20px',
+    position: "relative",
+    width: "200px",
+    height: "100px",
+    borderBottom: "1px solid #f1f5f9",
+    marginBottom: "20px",
   },
   svg: {
-    display: 'block',
+    display: "block",
   },
   text: {
-    color: '#0f172a',
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    letterSpacing: '3px',
-    textTransform: 'uppercase',
-    margin: '10px 0',
+    color: "#0f172a",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    letterSpacing: "3px",
+    textTransform: "uppercase",
+    margin: "10px 0",
   },
   subtext: {
-    color: '#14b8a6',
-    fontSize: '0.8rem',
+    color: "#14b8a6",
+    fontSize: "0.8rem",
     opacity: 0.8,
-  }
-}
+  },
+};

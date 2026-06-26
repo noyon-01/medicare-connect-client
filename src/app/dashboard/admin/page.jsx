@@ -1,12 +1,12 @@
-'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboardRootPage() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace('/dashboard/admin/analytics');
+    router.replace("/dashboard/admin/analytics");
   }, [router]);
 
   return (

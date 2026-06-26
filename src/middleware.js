@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
-import { auth } from "./lib/auth"; 
+import { auth } from "./lib/auth";
 import { headers } from "next/headers";
 
-const BACKEND = process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:5000";
+const BACKEND =
+  process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:5000";
 
-export async function proxy(request) {
+export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // 1. STAGE ONE: Aggressive Path Interception
   const isBooking = pathname.startsWith("/appointments/book");
-  const isProtected = pathname.startsWith("/dashboard") || pathname.startsWith("/appointments");
+  const isProtected =
+    pathname.startsWith("/dashboard") || pathname.startsWith("/appointments");
 
   // If it's not a route we care about, skip processing immediately
   if (!isProtected && !isBooking) return NextResponse.next();
@@ -21,7 +23,10 @@ export async function proxy(request) {
       headers: await headers(),
     });
   } catch (authErr) {
-    console.error("[proxy] Session authentication check crashed:", authErr.message);
+    console.error(
+      "[proxy] Session authentication check crashed:",
+      authErr.message,
+    );
   }
 
   // FORCE login if accessing protected files without a valid session
@@ -35,12 +40,15 @@ export async function proxy(request) {
   // 3. STAGE THREE: Database State Restriction Evaluation
   try {
     // encodeURIComponent handles matching special email strings safely
-    const res = await fetch(`${BACKEND}/api/appointments/check-restriction/${encodeURIComponent(userEmail)}`, {
-      cache: "no-store",
-    });
-    
+    const res = await fetch(
+      `${BACKEND}/api/appointments/check-restriction/${encodeURIComponent(userEmail)}`,
+      {
+        cache: "no-store",
+      },
+    );
+
     const data = await res.json();
-    
+
     if (data && data.success) {
       const { status, until } = data;
 
@@ -48,7 +56,9 @@ export async function proxy(request) {
       if (status === "restricted" && isBooking) {
         const untilFormatted = until
           ? new Date(until).toLocaleDateString("en-US", {
-              month: "short", day: "numeric", year: "numeric"
+              month: "short",
+              day: "numeric",
+              year: "numeric",
             })
           : "";
         const url = new URL("/find-doctors", request.url);
@@ -63,7 +73,10 @@ export async function proxy(request) {
       }
     }
   } catch (err) {
-    console.error("[proxy] Backend restriction lookup failed completely:", err.message);
+    console.error(
+      "[proxy] Backend restriction lookup failed completely:",
+      err.message,
+    );
   }
 
   return NextResponse.next();
