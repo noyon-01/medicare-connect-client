@@ -9,12 +9,16 @@ import {
   ArrowRight,
   Send,
   CheckCircle,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
 } from "lucide-react";
-import { FaHeartbeat, FaStethoscope, FaHospital } from "react-icons/fa";
+import {
+  FaHeartbeat,
+  FaStethoscope,
+  FaHospital,
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa";
 
 const faqs = [
   {
@@ -176,7 +180,7 @@ export default function ContactUsPage() {
               </div>
             </motion.div>
 
-            {/* Social Media */}
+            {/* Social Media - Using react-icons/fa */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -191,25 +195,25 @@ export default function ContactUsPage() {
                   href="#"
                   className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition-all duration-300"
                 >
-                  <Facebook className="w-4 h-4" />
+                  <FaFacebookF className="w-4 h-4" />
                 </a>
                 <a
                   href="#"
                   className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition-all duration-300"
                 >
-                  <Twitter className="w-4 h-4" />
+                  <FaTwitter className="w-4 h-4" />
                 </a>
                 <a
                   href="#"
                   className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition-all duration-300"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <FaLinkedinIn className="w-4 h-4" />
                 </a>
                 <a
                   href="#"
                   className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-cyan-500 hover:text-white transition-all duration-300"
                 >
-                  <Youtube className="w-4 h-4" />
+                  <FaYoutube className="w-4 h-4" />
                 </a>
               </div>
             </motion.div>
