@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 const BACKEND =
   process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:5000";
 
-export async function middleware(request) {
+export async function proxy(request) {
   const { pathname } = request.nextUrl;
 
   // 1. STAGE ONE: Aggressive Path Interception
@@ -39,7 +39,6 @@ export async function middleware(request) {
 
   // 3. STAGE THREE: Database State Restriction Evaluation
   try {
-    // encodeURIComponent handles matching special email strings safely
     const res = await fetch(
       `${BACKEND}/api/appointments/check-restriction/${encodeURIComponent(userEmail)}`,
       {
