@@ -9,7 +9,7 @@ https://medicare-connect-client-one.vercel.app
 ## 🔗 Repositories
 
 ### Client Repository
-
+https://github.com/noyon-01/medicare-connect-client
 
 
 ### Server Repository
