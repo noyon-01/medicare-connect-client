@@ -3,7 +3,7 @@
 A modern healthcare appointment and hospital management platform that connects patients, doctors, and administrators in a centralized digital healthcare ecosystem.
 
 ## 🌐 Live Website
-
+https://medicare-connect-client-one.vercel.app
 
 
 ## 🔗 Repositories
@@ -66,9 +66,9 @@ MediCare Connect solves these challenges by providing:
 
 ## 🔐 Admin Credentials
 
-Email: 
+Email: admin@gmail.com
 
-Password: 
+Password: Admin@123
 
 ---
 
@@ -123,23 +123,10 @@ Fully optimized for:
 * Tablets
 * Desktop Devices
 
----
-
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/joygoswaminiloy2023-droid/MediCare_Connect.git
-
-cd MediCare_Connect
-
-npm install
-
-npm run dev
-```
 
 ---
 
 
 ## 👨‍💻 Developed By
 
-Joy Goswami Niloy
+Shahadat Hosen Noyon.
